@@ -20,7 +20,7 @@ const template = `
 
 const takenNames = {};
 const takendogs = {};
-let idx = 20;
+let idx = 5;
 
 function randInt(max) {
     return Math.floor(Math.random() * (max + 1));
@@ -90,7 +90,7 @@ function createImage(idx) {
 
         const final = template
             //.replace('<!-- bg -->', getLayer(`bg${bg}`))
-            .replace('<!-- shadow_under -->', getLayer('shadow_under0'))
+            //.replace('<!-- shadow_under -->', getLayer('shadow_under0'))
             .replace('<!-- tail -->', getLayer(`tail${tail}`))
             .replace('<!-- body -->', getLayer('body0'))
             .replace('<!-- pattern -->', getLayer(`pattern${pattern}`))
