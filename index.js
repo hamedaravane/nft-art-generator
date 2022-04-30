@@ -2,7 +2,7 @@ const { readFileSync, writeFileSync, readdirSync, rmSync, existsSync, mkdirSync 
 const sharp = require('sharp');
 
 const template = `
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 3000 3000" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 3000 3000" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
         <!-- bg -->
         <!-- shadow_under -->
         <!-- tail -->
@@ -49,7 +49,7 @@ function getRandomName() {
 }
 
 function getLayer(name, skip = 0.0) {
-    const svg = readFileSync(`./layers/${name}.svg`, 'utf-8');
+    const svg = readFileSync(`./layers/optimized/${name}.svg`, 'utf-8');
     const re = /(?<=\<svg\s*[^>]*>)([\s\S]*?)(?=\<\/svg\>)/g
     const layer = svg.match(re)[0];
     return Math.random() > skip ? layer : '';
@@ -113,6 +113,7 @@ function createImage(idx) {
                 }
             ]
         }
+
         writeFileSync(`./out/${idx}.json`, JSON.stringify(meta))
         writeFileSync(`./out/${idx}.svg`, final)
         svgToPng(idx)
